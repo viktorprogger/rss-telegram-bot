@@ -7,6 +7,9 @@
     "yiisoft/di": "^3.0@dev",
     "hiqdev/composer-config-plugin": "^1.0@dev"
   },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
   "autoload": {
     "psr-4": {
       "bot\\": "./"
@@ -17,11 +20,7 @@
       "dev-master": "3.0.x-dev"
     },
     "config-plugin": {
-      "params": [
-        "$params",
-        "config/params.php"
-      ],
-      "console": "config/console.php"
+      "params": "config/params.php"
     }
   }
 }

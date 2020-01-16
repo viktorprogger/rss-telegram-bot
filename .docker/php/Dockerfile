@@ -33,13 +33,7 @@ RUN apk --no-cache add --virtual .build-deps \
     touch /var/log/bot/xdebug.log
 
 WORKDIR /var/www
-RUN rm -rf ./* && \
-    addgroup -g 1000 appuser && \
-    adduser -D -u 1000 -G appuser appuser && \
-    chown -R appuser:appuser .
-USER appuser
-
-ADD composer.* /var/www/
-RUN composer install --prefer-dist
-
+RUN rm -rf ./*
 COPY . /var/www/
+
+RUN composer install --prefer-dist
