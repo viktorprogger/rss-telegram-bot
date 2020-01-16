@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+    bot:
+        image: docker.pkg.github.com/viktorprogger/rss-telegram-bot/bot:${BUILD_TAG}
+        user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+        volumes:
+            - ./.docker/logs:/var/log
+            - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:ro
+            - ./.docker/data/composer/cache:/root/.composer/cache
+            - ./.docker/data/composer/auth.json:/.composer/auth.json:ro
+            - ./src:/var/www
+            - ./.env:/var/.env
+        environment:
+            TZ: Europe/Moscow
+        env_file:
+            - .env
+        depends_on:
+            - db
+
+    db:
+        image: postgres:11-alpine
+        restart: always
+        volumes:
+            - .docker/data/db:/var/lib/postgresql/data
+        environment:
+            TZ: Europe/Moscow
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_NAME}
+            POSTGRES_USER: ${DB_LOGIN}
+        ports:
+            - ${DB_PORT:-3306}:5432

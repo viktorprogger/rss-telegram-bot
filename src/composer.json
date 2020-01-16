@@ -1,0 +1,27 @@
+{
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4",
+    "yiisoft/yii-cycle": "^3.0@dev",
+    "yiisoft/yii-console": "^3.0@dev",
+    "yiisoft/di": "^3.0@dev",
+    "hiqdev/composer-config-plugin": "^1.0@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "bot\\": "./"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.0.x-dev"
+    },
+    "config-plugin": {
+      "params": [
+        "$params",
+        "config/params.php"
+      ],
+      "console": "config/console.php"
+    }
+  }
+}

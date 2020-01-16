@@ -1,0 +1,7 @@
+.idea
+.env
+tags
+src/vendor
+src/config/channels.php
+src/runtime/*
+!src/runtime/.gitkeep
